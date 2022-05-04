@@ -70,6 +70,7 @@ function jet_engine_add_pnf_callback_controls( $args = array() ) {
 		'label'     => __( 'Enter mask', 'jet-engine-phone-number-format-callback' ),
 		'type'      => 'text',
 		'default'   => '+9 (999) 999-9999',
+		'description' => __( 'Masking definitions - numeric [0-9]', 'jet-engine-phone-number-format-callback' ),
 		'condition' => array(
 			'dynamic_field_filter' => 'yes',
 			'filter_callback'      => array( 'jet_engine_pnf' ),
