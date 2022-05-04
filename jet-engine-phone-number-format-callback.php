@@ -26,6 +26,7 @@ function jet_engine_add_pnf_callback( $callbacks ) {
 	return $callbacks;
 }
 
+// Retrieves all values from a string that match a pattern.
 function jet_engine_pnf_get_pattern_from_str( $pattern, $str ) {
 	if ( preg_match_all( $pattern, $str, $matches ) ) {
 		return implode( $matches[0] );
@@ -39,11 +40,18 @@ function jet_engine_pnf( $value, $mask = '+9 (999) 999-9999' ) {
 		return $value;
 	}
 
+	// Change each number to a pattern from the incoming mask. Example: +%n (%n%n%n) %n%n%n-%n%n%n%n
 	$mask               = preg_replace( '/\d/', '%n', $mask );
+	// Get only patterns from the mask. Example: '%n%n%n%n...'
 	$patterns_from_mask = jet_engine_pnf_get_pattern_from_str( '/%n/', $mask );
+	// Get all numbers from input string. Example: input value '+12-34-56-78-90'; output value '1234...'
 	$numbers_from_str   = jet_engine_pnf_get_pattern_from_str( '/\d+/', $value );
+	// Get both arrays by mask and by numbers
+	// Example: '%n%n%n%n...' => ['%n','%n','%n','%n',....]
 	$arr_of_pattern     = preg_replace( '/%n/', '/%n/', str_split( $patterns_from_mask, 2 ) );
+	// Example: '1234...' => ['1','2','3','4',....]
 	$arr_of_replacement = str_split( $numbers_from_str );
+	// Replace character by character (by mask +%n (%n%n%n) %n%n%n-%n%n%n%n)
 	$result             = preg_replace( $arr_of_pattern, $arr_of_replacement, $mask, 1 );
 
 	return $result ? $result : $value;
