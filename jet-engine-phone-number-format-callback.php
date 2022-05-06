@@ -17,7 +17,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 function jet_engine_pnf( $value, $mask = '+9 (999) 999-9999' ) {
-	return \Jet_Engine_Phone_Number_Format::jet_engine_pnf( $value, $mask );
+	return \Jet_Engine_Phone_Number_Format::get_pnf_by_mask( $value, $mask );
 }
 
 class Jet_Engine_Phone_Number_Format {
@@ -39,7 +39,7 @@ class Jet_Engine_Phone_Number_Format {
 		return $callbacks;
 	}
 
-	public static function jet_engine_pnf( $value, $mask = '+9 (999) 999-9999' ) {
+	public static function get_pnf_by_mask( $value, $mask = '+9 (999) 999-9999' ) {
 		if ( empty( $value ) ) {
 			return $value;
 		}
