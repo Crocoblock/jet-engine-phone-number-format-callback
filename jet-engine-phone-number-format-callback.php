@@ -3,7 +3,7 @@
  * Plugin Name: JetEngine - Converts phone number format
  * Plugin URI: #
  * Description: Adds a new callback to the Dynamic Field widget that allows you to convert a phone number to a phone number mask format.
- * Version:     1.1.1
+ * Version:     1.1.2
  * Author:      Crocoblock
  * Author URI:  https://crocoblock.com/
  * License:     GPL-3.0+
@@ -40,7 +40,7 @@ class Jet_Engine_Phone_Number_Format {
 	}
 
 	public static function get_pnf_by_mask( $value, $mask = '+9 (999) 999-9999' ) {
-		if ( empty( $value ) ) {
+		if ( empty( $value ) || empty( $mask ) ) {
 			return $value;
 		}
 
