@@ -72,7 +72,7 @@ class Jet_Engine_Phone_Number_Format {
 
 	public function add_pnf_callback_args( $args, $callback, $settings = array() ) {
 		if ( 'jet_engine_pnf' === $callback ) {
-			$args[] = isset( $settings['phone_number_format'] ) ? $settings['phone_number_format'] : '+9 (999) 999-9999';
+			$args[] = $settings['phone_number_format'] ?? '+9 (999) 999-9999';
 		}
 
 		return $args;
